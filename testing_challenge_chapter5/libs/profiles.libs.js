@@ -30,5 +30,31 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+
+  updateProfiles: async (id, newData) => {
+    try {
+      const existingProfiles = await prisma.profiles.findUnique({
+        where: { id }
+      });
+      if (!existingProfiles) throw 'profiles tidak ditemukan';
+
+      const updateProfiles = await prisma.profiles.update({ where: { id }, data: newData });
+
+      return updateProfiles;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  deleteProfiles: async (id) => {
+    try {
+      const existingProfiles = await prisma.profiles.findUnique({ where: { id } });
+      if (!existingProfiles) throw 'profiles tidak ditemukan';
+
+      await prisma.profiles.delete({ where: { id } });
+    } catch (err) {
+      throw err;
+    }
   }
 };

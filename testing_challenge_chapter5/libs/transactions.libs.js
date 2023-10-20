@@ -29,5 +29,29 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+
+  updateTransactions: async (id, newData) => {
+    try {
+      const existingTransactions = await prisma.transactions.findUnique({ where: { id } });
+      if (!existingTransactions) throw 'transactions tidak ditemukan';
+
+      const updatedTransactions = await prisma.transactions.update({ where: { id }, data: newData });
+
+      return updatedTransactions;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  deletetransactions: async (id) => {
+    try {
+      const existingTransactions = await prisma.transactions.findUnique({ where: { id } });
+      if (!existingTransactions) throw 'transactions tidak ditemukan';
+
+      await prisma.transactions.delete({ where: { id } });
+    } catch (err) {
+      throw err;
+    }
   }
 };

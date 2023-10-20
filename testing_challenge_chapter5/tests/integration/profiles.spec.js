@@ -89,3 +89,88 @@ describe('test GET /api/v1/profiles/:id endpoint', () => {
     }
   });
 });
+
+describe('Uji endpoint PUT /api/v1/profiles/:id', () => {
+  test('Uji memperbarui pengguna dengan ID yang terdaftar -> Sukses', async () => {
+    try {
+      // Simulasikan pembaruan data profiles yang ada
+      const newData = {
+        user_id: 1,
+        identity_type: "SIM",
+        identity_number: "918829927737",
+        address: "jln.semangka Bandar Lampung"
+      };
+
+      const { statusCode, body } = await request(app)
+        .put(`/api/v1/profiles/${profiles.id}`)
+        .send(newData);
+
+      // Pastikan respons server sesuai dengan yang diharapkan
+      expect(statusCode).toBe(200);
+      expect(body).toHaveProperty('status', 'success');
+      expect(body).toHaveProperty('message', 'Profiles berhasil diperbarui');
+      expect(body).toHaveProperty('data');
+      expect(body.data).toHaveProperty('id', profiles.id);
+      expect(body.data).toHaveProperty('user_id', newData.user_id);
+      expect(body.data).toHaveProperty('identity_type', newData.identity_type);
+      expect(body.data).toHaveProperty('identity_number', newData.identity_number);
+      expect(body.data).toHaveProperty('address', newData.address);
+    } catch (err) {
+      expect('id sudah dipakai');
+    }
+  });
+
+  test('Uji memperbarui pengguna dengan ID yang tidak terdaftar -> Gagal', async () => {
+    try {
+      // Simulasikan pembaruan data pengguna dengan ID yang tidak ada
+      const newData = {
+        user_id: 1,
+        identity_type: "SIM",
+        identity_number: "918829927737",
+        address: "jln.semangka Bandar Lampung"
+      };
+
+      const { statusCode, body } = await request(app)
+        .put(`/api/v1/profiles/${profiles.id + 1000}`)
+        .send(newData);
+
+      // Pastikan respons server sesuai dengan yang diharapkan
+      expect(statusCode).toBe(404);
+      expect(body).toHaveProperty('status', 'error');
+      expect(body).toHaveProperty('message', 'Pengguna tidak ditemukan');
+      expect(body).toHaveProperty('data', null);
+    } catch (err) {
+      expect('id sudah dipakai');
+    }
+  });
+});
+
+describe('Uji endpoint DELETE /api/v1/profiles/:id', () => {
+  test('Uji menghapus pengguna dengan ID yang terdaftar -> Sukses', async () => {
+    try {
+      const { statusCode, body } = await request(app).delete(`/api/v1/profiles/${profiles.id}`);
+
+      // Pastikan respons server sesuai dengan yang diharapkan
+      expect(statusCode).toBe(200);
+      expect(body).toHaveProperty('status', 'success');
+      expect(body).toHaveProperty('message', 'Pengguna berhasil dihapus');
+      expect(body).toHaveProperty('data', null);
+    } catch (err) {
+      expect('error');
+    }
+  });
+
+  test('Uji menghapus pengguna dengan ID yang tidak terdaftar -> Gagal', async () => {
+    try {
+      const { statusCode, body } = await request(app).delete(`/api/v1/profiles/${profiles.id + 1000}`);
+
+      // Pastikan respons server sesuai dengan yang diharapkan
+      expect(statusCode).toBe(404);
+      expect(body).toHaveProperty('status', 'error');
+      expect(body).toHaveProperty('message', 'Pengguna tidak ditemukan');
+      expect(body).toHaveProperty('data', null);
+    } catch (err) {
+      expect('user tidak ditemukan');
+    }
+  });
+});

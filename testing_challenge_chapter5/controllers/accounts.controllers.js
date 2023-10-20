@@ -1,4 +1,4 @@
-const { createAccounts, getAccountsById } = require('../libs/accounts.libs');
+const { createAccounts, getAccountsById, updateAccounts, deleteAccounts } = require('../libs/accounts.libs');
 
 module.exports = {
   createAccounts: async (req, res, next) => {
@@ -50,5 +50,55 @@ module.exports = {
         data: null
       });
     }
+  },
+
+  updateAccounts: async (req, res, next) => {
+    try {
+      let { id } = req.params;
+      let newData = req.body; // Data baru untuk accounts yang diperbarui
+
+      try {
+        let updatedAccounts = await updateAccounts(Number(id), newData);
+
+        return res.status(200).json({
+          status: true,
+          message: 'Berhasil memperbarui accounts',
+          data: updatedAccounts
+        });
+      } catch (err) {
+        return res.status(400).json({
+          status: false,
+          message: err,
+          data: null
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  deleteAccounts: async (req, res, next) => {
+    try {
+      let { id } = req.params;
+
+      try {
+        await deleteAccounts(Number(id));
+
+        return res.status(200).json({
+          status: true,
+          message: 'Berhasil menghapus accounts',
+          data: null
+        });
+      } catch (err) {
+        return res.status(400).json({
+          status: false,
+          message: err,
+          data: null
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
   }
+
 };

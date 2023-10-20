@@ -88,42 +88,6 @@ describe('test GET /api/v1/users/:id endpoint', () => {
   });
 });
 
-// describe('test PUT /api/v1/users/:id endpoint', () => {
-//   test('test update users dengan id yang terdaftar -> sukses', async () => {
-//     try {
-
-//     } catch (err) {
-//       expect('error');
-//     }
-//   });
-
-//   test('test update users dengan id yang tidak terdaftar -> error', async () => {
-//     try {
-
-//     } catch (err) {
-//       expect('user tidak ditemukan');
-//     }
-//   });
-// });
-
-// describe('test DELETE /api/v1/users/:id endpoint', () => {
-//   test('test delete users dengan id yang terdaftar -> sukses', async () => {
-//     try {
-
-//     } catch (err) {
-//       expect('error');
-//     }
-//   });
-
-//   test('test delete users dengan id yang tidak terdaftar -> error', async () => {
-//     try {
-
-//     } catch (err) {
-//       expect('user tidak ditemukan');
-//     }
-//   });
-// });
-
 
 describe('Uji endpoint PUT /api/v1/users/:id', () => {
   test('Uji memperbarui pengguna dengan ID yang terdaftar -> Sukses', async () => {

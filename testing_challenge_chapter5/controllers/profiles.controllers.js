@@ -1,4 +1,4 @@
-const { createProfiles, getProfilesById } = require('../libs/profiles.libs');
+const { createProfiles, getProfilesById, updateProfiles, deleteProfiles } = require('../libs/profiles.libs');
 
 module.exports = {
   createProfiles: async (req, res, next) => {
@@ -49,6 +49,55 @@ module.exports = {
         message: err,
         data: null
       });
+    }
+  },
+
+  updateProfiles: async (req, res, next) => {
+    try {
+      let { id } = req.params;
+      let newData = req.body; // data baru untuk profiles yang diperbarui
+
+      try {
+        let updateProfiles = await updateProfiles(Number(id), newData);
+
+        return res.status(200).json({
+          status: true,
+          message: 'Berhasil memperbarui profiles',
+          data: updateProfiles
+        });
+      } catch (err) {
+        return res.status(400).json({
+          status: false,
+          message: err,
+          data: null
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  deleteProfiles: async (req, res, next) => {
+    try {
+      let { id } = req.params;
+
+      try {
+        await deleteProfiles(Number(id));
+
+        return res.status(200).json({
+          status: true,
+          message: 'Berhasil menghapus profiles',
+          data: null
+        });
+      } catch (err) {
+        return res.status(400).json({
+          status: false,
+          message: err,
+          data: null
+        });
+      }
+    } catch (err) {
+      next(err);
     }
   }
 };

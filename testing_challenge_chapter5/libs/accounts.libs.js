@@ -30,5 +30,29 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+
+  updateAccounts: async (id, newData) => {
+    try {
+      const existingAccounts = await prisma.bank_Accounts.findUnique({ where: { id } });
+      if (!existingAccounts) throw 'accounts tidak ditemukan';
+
+      const updatedAccounts = await prisma.bank_Accounts.update({ where: { id }, data: newData });
+
+      return updatedAccounts;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  deleteAccounts: async (id) => {
+    try {
+      const existingAccounts = await prisma.bank_Accounts.findUnique({ where: { id } });
+      if (!existingAccounts) throw 'accounts tidak ditemukan';
+
+      await prisma.bank_Accounts.delete({ where: { id } });
+    } catch (err) {
+      throw err;
+    }
   }
 };
