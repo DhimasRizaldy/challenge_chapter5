@@ -4,8 +4,23 @@ const app = express();
 const morgan = require('morgan');
 const { PORT = 3000 } = process.env;
 const endpointv1 = require('./routes/endpointV1');
+const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yaml');
+const fs = require('fs');
 
-// 
+
+// read yaml
+const file = fs.readFileSync('./api-docs-bank_system.yaml', 'utf-8');
+const swaggerDocument = YAML.parse(file);
+
+// url spi-docs
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// use cors swagger
+app.use(cors());
+
+// middleware
 app.use(morgan('dev'));
 app.use(express.json());
 

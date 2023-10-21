@@ -1,5 +1,5 @@
 ### Test Register
-POST http://localhost:8000/api/v1/auth/register
+POST http://localhost:3000/api/v1/auth/register
 Content-Type: application/json
 
 {
@@ -11,25 +11,25 @@ Content-Type: application/json
 
 
 ### Test Login
-POST http://localhost:8000/api/v1/auth/login
+POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email":"dhimasrizaldy02@gmail.com",
-    "password":"dimas123"
+    "email":"usertest1@gmail.com",
+    "password":"user123"
 }
 
 
 ### Test Token JWT
-GET http://localhost:8000/api/v1/auth/whoami
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjk3NzM2MzgwfQ.YeuORIoLRqquySrO5sRPe-uBvrY8CMtKnjOZcvc2hB8
+GET http://localhost:3000/api/v1/auth/whoami
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk3Nzg2MjY5fQ.iwwSxqxuBZwcRYx3uAFCRNX3Y_AN1FVF_XMLHY6sT84
 
 
 
 
 ### 1. Test Api Users
 ### create data users (POST)
-POST http://localhost:8000/api/v1/users
+POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
@@ -44,31 +44,31 @@ Content-Type: application/json
 }
 
 ### get all users
-GET http://localhost:8000/api/v1/users
+GET http://localhost:3000/api/v1/users
 
 ### get detail users by: id
-GET http://localhost:8000/api/v1/users/3
+GET http://localhost:3000/api/v1/users/2
 
 
 ### get data users with pagination
-GET http://localhost:8000/api/v1/users?limit=2&page=1
+GET http://localhost:3000/api/v1/users?limit=2&page=1
 
 ### Update data users by: id
-PUT http://localhost:8000/api/v1/users/4
+PUT http://localhost:3000/api/v1/users/2
 Content-Type: application/json
 
 {
-  "name": "Dhimas Rizaldy",
-  "email": "dhimasrizaldy02@gmail.com",
-  "password": "dimas123"
+  "name": "usertest2",
+  "email": "usertest2@gmail.com",
+  "password": "user123"
 }
 
 ### delete data users by: id
-DELETE http://localhost:8000/api/v1/users/1
+DELETE http://localhost:3000/api/v1/users/1
 
 ### 2. Test Api Accounts
 ### create data accounts (POST)
-POST http://localhost:8000/api/v1/accounts
+POST http://localhost:3000/api/v1/accounts
 Content-Type: application/json
 
 {
@@ -79,17 +79,17 @@ Content-Type: application/json
 }
 
 ### get all accounts
-GET http://localhost:8000/api/v1/accounts
+GET http://localhost:3000/api/v1/accounts
 
 ### get detail accounts by: id
-GET http://localhost:8000/api/v1/accounts/2
+GET http://localhost:3000/api/v1/accounts/2
 
 
 ### get data accounts with pagination
-GET http://localhost:8000/api/v1/accounts?limit=2&page=1
+GET http://localhost:3000/api/v1/accounts?limit=2&page=1
 
 ### update data accounts
-PUT http://localhost:8000/api/v1/accounts/5
+PUT http://localhost:3000/api/v1/accounts/5
 Content-Type: application/json
 
 {
@@ -100,13 +100,13 @@ Content-Type: application/json
 }
 
 ### delete accounts by: id
-DELETE http://localhost:8000/api/v1/accounts/5
+DELETE http://localhost:3000/api/v1/accounts/1
 
 
 ### 3. Transactions
 
 ### Create Data Transactions
-POST http://localhost:8000/api/v1/transactions
+POST http://localhost:3000/api/v1/transactions
 Content-Type: application/json
 
 {
@@ -116,17 +116,17 @@ Content-Type: application/json
 }
 
 ### get data all transactions
-GET http://localhost:8000/api/v1/transactions
+GET http://localhost:3000/api/v1/transactions
 
 ### get data by paginations
-GET http://localhost:8000/api/v1/transactions?limit=2&page=1
+GET http://localhost:3000/api/v1/transactions?limit=2&page=1
 
 ### get detail data transactions by: id
-GET http://localhost:8000/api/v1/transactions/2
+GET http://localhost:3000/api/v1/transactions/2
 
 ### 4. Test Api Profiles
 ### 1. create data profiles (POST)
-POST http://localhost:8000/api/v1/profiles
+POST http://localhost:3000/api/v1/profiles
 Content-Type: application/json
 
 {
@@ -137,7 +137,7 @@ Content-Type: application/json
 }
 
 ### 2. update data profiles
-PUT http://localhost:8000/api/v1/profiles/3
+PUT http://localhost:3000/api/v1/profiles/3
 Content-Type: application/json
 
 {
@@ -148,5 +148,5 @@ Content-Type: application/json
 }
 
 ### 3. detail data profiles
-GET http://localhost:8000/api/v1/profiles/4
+GET http://localhost:3000/api/v1/profiles/4
 

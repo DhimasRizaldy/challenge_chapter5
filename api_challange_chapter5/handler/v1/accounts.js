@@ -107,7 +107,7 @@ module.exports = {
     try {
       let { id } = req.params;
 
-      let deleteOperation = await prisma.accounts.delete({
+      let deleteOperation = await prisma.bank_Accounts.delete({
         where: { id: Number(id) }
       });
 
