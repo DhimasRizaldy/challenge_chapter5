@@ -10,7 +10,7 @@
 3. npm install nodemon --save-dev
 4. npm install express
 5. npm install dotenv
-6 setting env : DATABASE_URL="postgresql://postgres:dimas020102@localhost:5432/db_banking_system?schema=public"
+6. setting env : DATABASE_URL="postgresql://postgres:dimas020102@localhost:5432/db_banking_system?schema=public"
 7. npx prisma migrate dev --name init
 8. npm install cors
 9. npm install swagger-ui-express
